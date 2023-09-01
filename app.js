@@ -15,7 +15,7 @@ const form = document.querySelector("#form");
 form.addEventListener("submit", async (e) => {
   e.preventDefault();
   console.log("button clicked");
-  await fetch("https://notificationsgeneratorbackend.onrender.com/home", {
+  await fetch("https://notification-app-aditya.onrender.com/home", {
     method: "POST",
     body: JSON.stringify({
       description: input.value,
