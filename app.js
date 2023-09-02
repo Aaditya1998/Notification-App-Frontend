@@ -15,22 +15,19 @@ const form = document.querySelector("#form");
 form.addEventListener("submit", async (e) => {
   e.preventDefault();
   console.log("button clicked");
-
-  try {
-    const response = await axios.post(
-      "https://notification-app-aditya.onrender.com/home",
-      {
-        description: input.value,
-      }
-    );
-
-    console.log("Response data:", response.data);
-
-    // Clear the input field
-    input.value = "";
-  } catch (error) {
-    console.error("Axios error:", error);
-  }
+  await fetch("http://localhost:8000/home", {
+    method: "POST",
+    body: JSON.stringify({
+      description: input.value,
+    }),
+    headers: {
+      "Content-Type": "application/json",
+    },
+  })
+    .then((response) => response.json())
+    .then((data) => console.log(data))
+    .catch((error) => console.error(error));
+  input.value = "";
 });
 
 // extracting input value on button click
